@@ -15,6 +15,10 @@ class Error: NSError {
     init(code: ErrorCode, statusCode: Int) {
         super.init(domain: ErrorDomain, code: code.rawValue, userInfo: ["statusCode": statusCode, NSLocalizedDescriptionKey: "HTTP Error: \(statusCode)"])
     }
+    
+    init(code: ErrorCode, statusCode: Int, HTTPHeaderLocation: String?) {
+        super.init(domain: ErrorDomain, code: code.rawValue, userInfo: ["statusCode": statusCode, NSLocalizedDescriptionKey: "HTTP Error: \(statusCode)", "HTTPHeaderLocation": HTTPHeaderLocation!])
+    }
 
     init(code: ErrorCode, error: NSError) {
         super.init(domain: ErrorDomain, code: code.rawValue, userInfo: ["error": error, NSLocalizedDescriptionKey: error.localizedDescription])

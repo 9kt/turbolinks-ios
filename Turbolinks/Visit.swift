@@ -192,7 +192,7 @@ class ColdBootVisit: Visit, WKNavigationDelegate, WebViewPageLoadDelegate {
             } else {
                 decisionHandler(.Cancel)
                 fail {
-                    let error = Error(code: .HTTPFailure, statusCode: httpResponse.statusCode)
+                    let error = Error(code: .HTTPFailure, statusCode: httpResponse.statusCode, HTTPHeaderLocation: httpResponse.allHeaderFields["Location"] as? String)
                     self.delegate?.visit(self, requestDidFailWithError: error)
                 }
             }
